@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>test4 title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/test3 : html
+		static : 이미지, css, js, uploadPath
+	-->
+	
+	<h1>templates/test4.html</h1>
+	
+	<a href="http://www.thymeleaf.org">thymeleaf 홈페이지 이동</a>
+	<a th:href="@{/test3}">test3 페이지 이동</a>
+	<!--http://localhost:8080/test5?id=kim&passwd=p123-->
+	<a th:href="@{/test5(id='kim' ,passwd='p123')}">테스트5 페이지로 이동</a>
+	<table border="1">
+		
+		
+		<tr><td>아이디</td><td>비밀번호</td><td>이름</td></tr>
+		<tr th:each="memberDTO,status:${memberList}">
+			<td><span th:text="${memberDTO.id}"></span></td>
+			<td><span th:text="${memberDTO.passwd}"></span></td>
+			<td><span th:text="${memberDTO.name}"></span></td>
+		</tr>
+		
+	</table>
+	
+</body>
+
+</html>
