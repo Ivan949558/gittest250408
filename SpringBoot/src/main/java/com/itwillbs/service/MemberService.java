@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -44,6 +45,18 @@ public class MemberService {
 		Member member = Member.setMemberEntity(memberDTO);
 		
 		memberRepository.save(member);
+	}
+
+	public void delete(String id) {
+		log.info("MemberService delete()");
+		
+		memberRepository.deleteById(id);
+	}
+
+	public List<Member> getAllMembers() {
+		log.info("MemberService getAllMembers()");
+		
+		return memberRepository.findAll();
 	}
 	
 	

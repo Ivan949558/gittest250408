@@ -39,3 +39,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+//홈화면 설정
+application {
+    mainClassName = 'com.example.MainApplication'
+}
+tasks.register('openBrowser') {
+    doLast {
+        java.awt.Desktop.getDesktop().browse(new URI("http://localhost:8080"))
+    }
+}

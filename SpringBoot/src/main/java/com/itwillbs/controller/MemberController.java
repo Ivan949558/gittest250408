@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,12 @@ public class MemberController {
 	
 	//객체 생성
 	private final MemberService memberService;
+	
+	@GetMapping("/")
+    public String home() {
+        return "/member/main";
+    }
+
 	
 	//http://localhost:8080/insert
 	@GetMapping("/insert")
@@ -122,18 +129,26 @@ public class MemberController {
 	
 	//http://localhost:8080/delete
 	@GetMapping("/delete")
-	public String delete() {
+	public String delete(HttpSession session) {
 		log.info("MemberController delete()");
+		String id = (String) session.getAttribute("id");
+		
+		memberService.delete(id);
 		
 		return "/member/main";
 	}
 	
 	//http://localhost:8080/list
 	@GetMapping("/list")
-	public String list() {
+	public String list(Model model) {
 		log.info("MemberController list()");
 		
-		return "/member/list";
+		
+		List<Member> members = memberService.getAllMembers();
+		log.info("member" + members);
+        model.addAttribute("members", members);
+		
+		return "member/list";
 	}
 	
 	

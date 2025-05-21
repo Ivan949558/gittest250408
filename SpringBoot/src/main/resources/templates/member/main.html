@@ -16,7 +16,7 @@
 		<a href="/logout">로그아웃</a><br>
 		<a href="/info">나의 정보 조회</a><br>
 		<a href="/update">나의 정보 수정</a><br>
-		<a href="/delete">나의 정보 삭제</a><br>
+		<a href="/delete" onclick="return confirmDelete()">나의 정보 삭제</a><br>
 		<a href="/list">회원목록</a><br>
 	</div>
 	
@@ -28,18 +28,26 @@
 	<a href="/board/fwrite">파일 게시판 글쓰기</a><br>
 	
 	
-	<script>
-	    var sessionId = "${session.id}";
-	    if (sessionId != null) {
-	        document.getElementById("loginLink").style.display = "none";
-	        document.getElementById("signupLink").style.display = "none";
-	    } else {
-			document.getElementById("loginInfo").style.display = "none";
-			document.getElementById("memberInfo").style.display = "none";
-		}
-		
-	</script>
+	<script th:inline="javascript">
+	    var sessionId = /*[[${session.id}]]*/ "";
 
+	    // sessionId 값 확인
+	    console.log("현재 세션 값:", sessionId);
+
+	    // 로그인 상태인 경우 (sessionId가 존재하면)
+	    if (sessionId && sessionId !== "null" && sessionId !== "") {
+	        document.getElementById("loginLink").style.display = "none";  // 로그인 버튼 숨김
+	        document.getElementById("signupLink").style.display = "none"; // 회원가입 버튼 숨김
+	    } else {
+	        document.getElementById("loginInfo").style.display = "none";  // 로그인 정보 숨김
+	        document.getElementById("memberInfo").style.display = "none"; // 회원 메뉴 숨김
+	    }
+		
+		function confirmDelete() {
+			return confirm("정말 계정를 삭제하시겠습니까?");
+		}
+
+	</script>
 	
 </body>
 

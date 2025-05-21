@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>list title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/list : html
+		static : 이미지, css, js, uploadPath
+	-->
+	<table>
+	    <tr>
+	        <th>회원 ID</th>
+	        <th>이름</th>
+	        <th>이메일</th>
+	    </tr>
+	    <tr th:each="member : ${members}">
+	        <td th:text="${member.id}"></td>
+	        <td th:text="${member.name}"></td>
+	    </tr>
+	</table>
+	
+	<a href="/main"> 메인페이지로 이동 </a>
+	
+</body>
+
+</html>
