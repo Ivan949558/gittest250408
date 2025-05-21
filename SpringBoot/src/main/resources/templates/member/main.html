@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>main title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/main : html
+		static : 이미지, css, js, uploadPath
+	-->
+	
+	<h1>templates/member/main.html</h1>
+	<span th:text="${session.id}"></span><a id="loginInfo"> 님 로그인</a><br>
+	
+	<div id="memberInfo">
+		<a href="/logout">로그아웃</a><br>
+		<a href="/info">나의 정보 조회</a><br>
+		<a href="/update">나의 정보 수정</a><br>
+		<a href="/delete">나의 정보 삭제</a><br>
+		<a href="/list">회원목록</a><br>
+	</div>
+	
+	<a href="/login" id="loginLink"> [로그인] </a>
+	<a href="/insert" id="signupLink"> [회원가입] </a><br>
+		
+	<a href="/board/write">게시판 글쓰기</a><br>
+	<a href="/board/list">게시판 글목록</a><br>
+	<a href="/board/fwrite">파일 게시판 글쓰기</a><br>
+	
+	
+	<script>
+	    var sessionId = "${session.id}";
+	    if (sessionId != null) {
+	        document.getElementById("loginLink").style.display = "none";
+	        document.getElementById("signupLink").style.display = "none";
+	    } else {
+			document.getElementById("loginInfo").style.display = "none";
+			document.getElementById("memberInfo").style.display = "none";
+		}
+		
+	</script>
+
+	
+</body>
+
+</html>

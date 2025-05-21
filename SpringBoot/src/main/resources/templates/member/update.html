@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>update title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/update : html
+		static : 이미지, css, js, uploadPath
+	-->
+
+	<h1>templates/member/update.html</h1>
+	<form action="/updatePro" method="post">
+		아이디 : <input type="text" name="id" th:value="${member.id}"><br>
+		비밀번호 : <input type="password" name="passwd" th:value="${member.passwd}"><br>
+		이름 : <input type="text" name="name" th:value="${member.name}"><br>
+		<input type="submit" value="회원정보 수정">
+	</form>
+</body>
+
+</html>

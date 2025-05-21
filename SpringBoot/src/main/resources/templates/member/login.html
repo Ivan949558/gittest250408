@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>login title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/login : html
+		static : 이미지, css, js, uploadPath
+	-->
+	
+	<a href="/main"> 메인페이지 이동 </a> <br>
+	
+	<h1>templates/member/login.html</h1>
+	<form th:action="@{/loginPro}" method="post">
+		아이디 : <input type="text" name="id"><br>
+		비밀번호 : <input type="password" name="passwd"><br>
+		<input type="submit" value="로그인">
+	</form>
+	
+	<a href="/insert"> 회원가입 </a>
+</body>
+
+</html>
