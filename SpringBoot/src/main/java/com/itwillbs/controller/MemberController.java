@@ -61,6 +61,13 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+	@GetMapping("/loginWarning")
+	public String loginWarning() {
+		log.info("MemberController login()");
+		
+		return "/member/loginWarning";
+	}
+	
 	//http://localhost:8080/login
 	@PostMapping("/loginPro")
 	public String loginPro(MemberDTO memberDTO, HttpSession session) {
@@ -72,7 +79,7 @@ public class MemberController {
 			session.setAttribute("id", member.getId());
 			return "redirect:/main";
 		} else {
-			return "redirect:/login";
+			return "redirect:/loginWarning";
 		}
 	}
 	
@@ -137,15 +144,25 @@ public class MemberController {
 		}
 	}
 	
-	//http://localhost:8080/delete
 	@GetMapping("/delete")
-	public String delete(HttpSession session) {
+	public String delete() {
 		log.info("MemberController delete()");
-		String id = (String) session.getAttribute("id");
 		
-		memberService.delete(id);
+		return "/member/delete";
+	}
+	
+	//http://localhost:8080/deletePro
+	@PostMapping("/deletePro")
+	public String deletePro(HttpSession session, MemberDTO memberDTO) {
+		log.info("MemberController deletePro()");
+		Member member = memberService.findByIdAndPasswd(memberDTO);
 		
-		return "/member/main";
+		if(member != null) {
+			memberService.delete(member.getId());
+			return "redirect:/logout";
+		} else {
+			return "redirect:/main";
+		}
 	}
 	
 	//http://localhost:8080/list

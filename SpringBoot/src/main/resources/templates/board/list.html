@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>list title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/list : html
+		static : 이미지, css, js, uploadPath
+	-->
+	<table border="1">
+	    <tr>
+	        <th>번호</th>
+	        <th>제목</th>
+			<th >작성자</th>
+			<th >작성시간</th>
+			<th >조회수</th>
+	    </tr>
+	    <tr th:each="board : ${boards1}">
+	        <td th:text="${board.num}"></td>
+	        <td th:text="${board.subject}"></td>
+			<td th:text="${board.name}"></td>
+			<td th:text="${board.rdate}"></td>
+			<td th:text="${board.readcount}"></td>
+	    </tr>
+	</table>
+	
+	<div>
+	    <a th:if="${boards.number > 0}" th:href="@{/list(page=${boards.number - 1}, size=10)}">이전</a>
+	    <span th:text="'페이지 ' + (${boards.number + 1}) + ' / ' + ${boards.totalPages}"></span>
+	    <a th:if="${boards.number + 1 < boards.totalPages}" th:href="@{/list(page=${boards.number + 1}, size=10)}">다음</a>
+	</div>
+
+	
+	
+	<a href="/main"> 메인페이지로 이동 </a>
+	
+	
+</body>
+
+</html>

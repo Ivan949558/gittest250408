@@ -1,5 +1,8 @@
 package com.itwillbs.domain;
 
+import java.sql.Timestamp;
+
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,12 +26,15 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class MemberDTO {
+public class BoardDTO {
 	//객체지향 개념 특징 : 데이터 은닉(캡술화)
 	//멤버변수 : 외부에 접근 못하게 막아줌(데이터 은닉, 접근 제어자 private)
-	private String id;
-	private String passwd;
+	private int num;
 	private String name;
-	
+	private String subject;
+	private String content;
+	private int readcount;
+	private Timestamp rdate;
+	private String file;
 	
 }

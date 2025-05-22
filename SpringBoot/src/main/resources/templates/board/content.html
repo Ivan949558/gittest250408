@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>content title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/content : html
+		static : 이미지, css, js, uploadPath
+	-->
+
+	<h1>templates/board/content.html</h1>
+		이름 : <input type="text" name="name" th:value="${session.id}" readonly><br>
+		제목 : <input type="text" name="subject" readonly><br>
+		파일 : <input type="file" name="file" readonly><br>
+		내임 : <textarea name="content" rows="5" cols="10" readonly></textarea><br>
+	<a href="/board/update">수정하기</a>
+	
+</body>
+
+</html>

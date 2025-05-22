@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>delete title</title>
+</head>
+
+<body>
+	<!--	http://localhost:8080/delete : html
+		static : 이미지, css, js, uploadPath
+	-->
+	
+	<a href="/main"> 메인페이지 이동 </a> <br>
+	
+	<h1>templates/member/delete.html</h1>
+	<form th:action="@{/deletePro}" method="post">
+		아이디 : <input type="text" name="id"><br>
+		비밀번호 : <input type="password" name="passwd"><br>
+		<input type="submit" onclick="return confirmDelete()" value="계정 삭제">
+	</form>
+	
+	<a href="/insert"> 회원가입 </a>
+	
+	<script th:inline="javascript">
+		function confirmDelete() {
+			return confirm("정말 계정를 삭제하시겠습니까?");
+		}
+	</script>
+</body>
+
+</html>
