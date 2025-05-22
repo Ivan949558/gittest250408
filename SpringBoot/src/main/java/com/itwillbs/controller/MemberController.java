@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.SessionScope;
 
 import com.itwillbs.domain.MemberDTO;
@@ -119,12 +120,21 @@ public class MemberController {
 	
 	//http://localhost:8080/updatePro
 	@PostMapping("/updatePro")
-	public String updatePro(MemberDTO memberDTO) {
+	public String updatePro(MemberDTO memberDTO, HttpSession session, @RequestParam("passwd") String passwd) {
 		log.info("MemberController logout()");
 		
-		memberService.updatePro(memberDTO);
+		Member member = memberService.findByIdAndPasswd(memberDTO);
 		
-		return "redirect:/main";
+		if(member != null) {
+			//수정하러 가기전에 수정되지 않는 값도 담아서 들고감
+			// => 안들고 가면 기존값 null 수정이 되어짐
+			//memberDTO.setRdate(member.getRdate());
+			
+			memberService.updatePro(memberDTO);
+			return "redirect:/main";
+		} else {
+			return "redirect:/update";
+		}
 	}
 	
 	//http://localhost:8080/delete
