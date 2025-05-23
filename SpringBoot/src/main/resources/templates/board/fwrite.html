@@ -10,7 +10,7 @@
 	-->
 
 	<h1>templates/member/write.html</h1>
-	<form action="/board/writePro" method="post">
+	<form action="/board/fwritePro" method="post" enctype="multipart/form-data">
 		이름 : <input type="text" name="name" th:value="${session.id}" readonly><br>
 		제목 : <input type="text" name="subject"><br>
 		파일 : <input type="file" name="file"><br>

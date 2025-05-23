@@ -73,7 +73,10 @@ public class Board {
 		return board;
 	}
 	
-	
+	public void setReadcount(int readcount) {
+        this.readcount = readcount;
+    }
+
 	
 	
 }

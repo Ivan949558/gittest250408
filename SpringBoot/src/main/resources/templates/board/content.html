@@ -10,11 +10,14 @@
 	-->
 
 	<h1>templates/board/content.html</h1>
-		이름 : <input type="text" name="name" th:value="${session.id}" readonly><br>
-		제목 : <input type="text" name="subject" readonly><br>
-		파일 : <input type="file" name="file" readonly><br>
-		내임 : <textarea name="content" rows="5" cols="10" readonly></textarea><br>
-	<a href="/board/update">수정하기</a>
+		<input type="hidden" name="num" value="${board.num}">
+		제목 : <input type="text" name="subject" th:value="${board.subject}" readonly><br>
+		작성자 : <input type="text" name="name" th:value="${board.name}" readonly><br>
+		<img th:if="${board.file != null}" th:src="@{'/uploads/' + ${board.file}}" alt="Uploaded Image" width="400"><br>
+		내용 : <textarea name="content" rows="5" cols="10" readonly th:text="${board.content}"></textarea><br>
+	<a th:if="${board.file == null}" th:href="@{/board/update(num=${board.num})}">수정하기 </a>
+	<a th:if="${board.file != null}" th:href="@{/board/fupdate(num=${board.num})}">수정하기 </a>
+	<a th:href="@{/board/delete(num=${board.num})}" onclick="return confirm('정말 삭제하시겠습니까?');"> 삭제</a>
 	
 </body>
 

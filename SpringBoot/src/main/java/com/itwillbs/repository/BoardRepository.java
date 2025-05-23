@@ -1,5 +1,7 @@
 package com.itwillbs.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,6 +16,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     // 특정 제목을 포함하는 게시글 페이징 처리
     Page<Board> findBySubjectContaining(String subject, Pageable pageable);
+
 
 	
 }

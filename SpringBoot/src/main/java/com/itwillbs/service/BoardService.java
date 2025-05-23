@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,12 +36,39 @@ public class BoardService {
 	}
 	
     public Page<Board> getPagedBoards(Pageable pageable) {
-        return boardRepository.findAll(pageable);
+    	log.info("BoardService getPagedBoards()");
+    	
+    	return boardRepository.findAll(pageable);
     }
 
     public Page<Board> getPagedBoardsBySubject(String subject, Pageable pageable) {
-        return boardRepository.findBySubjectContaining(subject, pageable);
+    	log.info("BoardService getPagedBoardsBySubject()");
+    	
+    	return boardRepository.findBySubjectContaining(subject, pageable);
     }
+
+	public Optional<Board> findByBoard(Integer num) {
+		log.info("BoardService findByBoard()");
+		Optional<Board> board = boardRepository.findById(num);
+        board.ifPresent(b -> {
+            b.setReadcount(b.getReadcount() + 1); // 조회수 증가
+            boardRepository.save(b);
+        });
+		return boardRepository.findById(num);
+	}
+
+	public void delete(Integer num) {
+		log.info("BoardService delete()");
+		
+		boardRepository.deleteById(num);
+	}
+
+	public void fsave(Board board) {
+		
+		boardRepository.save(board);
+	}
+
+	
 
 	
 	
