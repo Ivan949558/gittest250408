@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+/* --- Main Container for Forms (공통 스타일 유지) --- */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
+    box-sizing: border-box;
+}
+
+/* --- 로그인 컨테이너 스타일 (로그인 폼에만 해당) --- */
+.login-container { /* 이 스타일은 로그인 폼에만 적용됩니다. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+/* --- Form Styles (회원정보 수정 폼과 로그인 폼에 공통 적용) --- */
+.main form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* 폼 자체의 최대 너비 */
+    width: 100%;
+    box-sizing: border-box;
+    /* 폼 내부 요소들을 세로로 정렬하고 가로 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px; /* 폼과 하단 회원가입 링크 사이 간격 */
+}
+
+/* --- 각 입력 필드 그룹 (.form-group) 스타일 (회원가입 폼에만 해당) --- */
+/* 이 부분은 form-group이 사용된 경우에만 적용됩니다. */
+.main form .form-group {
+    display: flex; /* Flexbox를 사용하여 label과 input을 한 줄에 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-bottom: 15px; /* 각 줄 간의 간격 */
+    width: 100%; /* 부모 폼의 너비를 따름 */
+    max-width: 450px; /* 폼 내부에서 form-group의 최대 너비 (조절 가능) */
+    justify-content: center; /* label과 input 쌍 자체를 중앙 정렬 */
+}
+
+/* --- 레이블 및 입력 필드 공통 스타일 (모든 폼에 적용) --- */
+/* .form-group 안에 있든 없든 모든 label과 input에 적용 */
+.main form label {
+    width: 100px; /* 레이블 너비 고정 */
+    font-weight: bold;
+    color: #555;
+    padding-top: 0;
+    text-align: right;
+    margin-right: 15px;
+    flex-shrink: 0; /* 레이블이 줄어들지 않도록 (flex 컨테이너 내에서) */
+    display: inline-block; /* flex 컨테이너 밖에서도 작동하도록 */
+    vertical-align: middle; /* flex 컨테이너 밖에서도 세로 정렬되도록 */
+}
+
+.main form input[type="text"],
+.main form input[type="password"] {
+    flex-grow: 1; /* flex 컨테이너 내에서 남은 공간을 채우도록 */
+    max-width: 300px; /* 입력 필드 자체의 최대 너비 */
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    font-size: 1em;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block; /* flex 컨테이너 밖에서도 작동하도록 */
+    vertical-align: middle; /* flex 컨테이너 밖에서도 세로 정렬되도록 */
+}
+
+/* .form-group이 없는 경우를 위한 추가 조정 */
+/* 로그인 폼처럼 <br> 태그로 줄바꿈 되는 경우 */
+.main form input[type="text"] + br + label,
+.main form input[type="password"] + br + label {
+    margin-top: 15px; /* <br> 태그 이후 레이블의 상단 간격 */
+}
+.main form input[type="text"] + br + input,
+.main form input[type="password"] + br + input {
+    margin-top: 15px; /* <br> 태그 이후 입력 필드의 상단 간격 */
+}
+
+/* .form-group이 없는 경우의 input 너비 계산 (로그인 폼을 위해) */
+.main form:not(.form-group-parent) input[type="text"],
+.main form:not(.form-group-parent) input[type="password"] {
+    width: calc(100% - 100px - 15px); /* 전체 - 레이블 너비 - 레이블과의 마진 */
+}
+
+/* 아이디 필드는 읽기 전용이므로 배경색을 다르게 하여 시각적으로 구분 */
+.main form input[name="id"][readonly] {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 제출 버튼 스타일 (공통 적용) */
+.main form input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 25px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main form input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* HTML의 <br> 태그로 인해 생기는 불필요한 공백을 줄이기 위한 조정 */
+/* <br> 태그는 여전히 필요하므로 display: none;을 제거합니다. */
+/* 간격은 label과 input의 margin-bottom으로 처리합니다. */
+.main form br {
+    clear: both; /* 레이블과 인풋이 옆에 있을 때 다음 요소가 아래로 내려가도록 */
+    margin-bottom: 5px; /* 각 줄 사이의 간격 조정 */
+}
+
+
+/* --- 회원가입 링크 (a.signup) 스타일 --- */
+.main .signup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #6c757d;
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main .signup:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 반응형 디자인 (작은 화면) --- */
+@media (max-width: 768px) {
+    .main {
+        padding: 20px 10px;
+    }
+
+    .login-container {
+        padding: 0;
+    }
+
+    .main form {
+        padding: 20px;
+        box-shadow: none;
+        border-radius: 0;
+        margin-bottom: 20px;
+        max-width: 100%;
+        align-items: flex-start; /* 작은 화면에서는 좌측 정렬 */
+    }
+
+    /* .form-group 스타일 (작은 화면) */
+    .main form .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+
+    .main form .form-group label {
+        width: 100%;
+        text-align: left;
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 0.95em;
+    }
+
+    .main form .form-group input[type="text"],
+    .main form .form-group input[type="password"] {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    /* .form-group이 없는 경우 (로그인 폼) 작은 화면에서 */
+    .main form:not(.form-group-parent) label,
+    .main form:not(.form-group-parent) input[type="text"],
+    .main form:not(.form-group-parent) input[type="password"] {
+        display: block; /* 블록 요소로 전환하여 세로로 쌓이도록 */
+        width: 100%; /* 전체 너비 차지 */
+        margin-left: 0; /* 마진 초기화 */
+        margin-right: 0; /* 마진 초기화 */
+        margin-bottom: 10px; /* 간격 조절 */
+        text-align: left; /* 텍스트 정렬 */
+    }
+
+    .main form:not(.form-group-parent) label {
+        padding-top: 0;
+        font-size: 0.95em;
+    }
+
+    .main form:not(.form-group-parent) input[type="text"],
+    .main form:not(.form-group-parent) input[type="password"] {
+        max-width: 100%;
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .main form input[type="submit"] {
+        width: 100%;
+        font-size: 1em;
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+
+    .main .signup {
+        width: 100%;
+        font-size: 0.95em;
+        padding: 10px 15px;
+    }
+}

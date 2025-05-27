@@ -38,12 +38,12 @@ header a {
 }
 
 .board-links a {
-    background-color: #28a745; /* 녹색 버튼 배경 */
+    background-color: gray; /* 녹색 버튼 배경 */
     font-weight: bold;
 }
 
 .board-links a:hover {
-    background-color: #218838; /* 호버 시 더 어두운 녹색 */
+    background-color: #c0c0c0; /* 호버 시 더 어두운 녹색 */
 }
 
 /* 사용자 영역 그룹 (우측 배치) */

@@ -4,20 +4,21 @@
 	<title>insert title</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/member.css}">
 </head>
 
 <body>
 	<!--	http://localhost:8080/insert : html
 		static : 이미지, css, js, uploadPath
 	-->
-
+	
 	<header th:insert="~{inc/top}"></header>
-	아이디 : <span th:text="${member.id}"></span><br>
-	비밀번호 : <span th:text="${member.passwd}"></span><br>
-	이름 : <span th:text="${member.name}"></span><br>
+	<div class="main">
+	<label> 아이디 : </label><span th:text="${member.id}" class="id"></span><br>
+	<label> 비밀번호 : </label><span th:text="${member.passwd}" class="passwd"></span><br>
+	<label> 이름 : </label><span th:text="${member.name}" class="name"></span><br>
 	
-	<a href="/main"> 메인페이지로 이동 </a>
-	
+	</div>
 	<footer th:insert="~{inc/footer}"></footer>
 </body>
 
