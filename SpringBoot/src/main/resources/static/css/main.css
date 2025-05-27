@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+/* --- Main Home Section Styles --- */
+.main_home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* max-width: 900px; 제거하여 100% 너비로 확장 */
+    width: 100%; /* 웹페이지 가로 100% 차지 */
+    padding: 40px 0; /* 상하 패딩은 유지, 좌우 패딩은 제거 (내부 요소에서 처리) */
+    background-color: #ffffff;
+    /* background-image, background-size 등 배경 이미지 관련 속성은 그대로 유지 */
+    background-image: url('/uploads/Kumamon_b.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    position: relative;
+    min-height: 400px;
+    z-index: 1;
+
+    /* main_home 자체의 좌우 여백을 위한 패딩 추가 */
+    /* 내부 콘텐츠가 양 끝에 너무 붙지 않도록 더 큰 좌우 패딩을 줍니다. */
+    /* 이 패딩은 배경 이미지 위, 콘텐츠 아래에 적용됩니다. */
+    padding-left: 5%; /* 예시: 좌우 5% 패딩 */
+    padding-right: 5%; /* 예시: 좌우 5% 패딩 */
+
+    /* border-radius와 box-shadow는 100% 너비에서 적용 시 어색할 수 있어 제거하거나 조절 */
+    border-radius: 0; /* 웹페이지 전체를 덮을 때 모서리 둥글기 제거 */
+    box-shadow: none; /* 웹페이지 전체를 덮을 때 그림자 제거 */
+}
+
+/* 배경 이미지 위에 어둡거나 밝은 오버레이 */
+.main_home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    border-radius: 0; /* main_home과 동일하게 둥근 모서리 제거 */
+}
+
+/* 개별 섹션 스타일 */
+/* 이 섹션들의 max-width는 그대로 유지하여 콘텐츠는 여전히 중앙에 모이도록 합니다. */
+.profile-section,
+.link-section {
+    width: 100%; /* 부모 .main_home의 너비를 따름 */
+    max-width: 800px; /* 내부 콘텐츠의 최대 너비. 필요에 따라 조절하세요. */
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 2;
+    /* profile-section에 주었던 추가 패딩은 이제 .main_home에서 처리하므로 제거 */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.link-section {
+    margin-bottom: 0;
+}
+
+/* 이미지 스타일 (profile-img에만 해당) */
+.main_home img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main_home .profile-img {
+    margin-top: 20px;
+    border: 3px solid #007bff;
+    padding: 5px;
+    object-fit: cover;
+    height: 300px;
+    border-radius: 8px;
+}
+
+/* 프로필 텍스트 스타일 */
+.profile-section .profile-text {
+    font-size: 1.15em;
+    color: #f8f9fa;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    /* profile-text에 주었던 추가 패딩은 이제 .main_home에서 처리하므로 제거 */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 링크 섹션 제목 스타일 */
+.link-section .link-title {
+    font-size: 1.3em;
+    color: #4dc4ff;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* 링크 그룹 스타일 */
+.link-section .link-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.link-section .link-group a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 8px 15px;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 123, 255, 0.7);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.link-section .link-group a:hover {
+    background-color: #007bff;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
+}
+
+
+/* --- 반응형 디자인 (작은 화면) --- */
+@media (max-width: 768px) {
+    .main_home {
+        padding: 20px 0; /* 상하 패딩 유지, 좌우 패딩 제거 */
+        margin: 20px auto;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 300px;
+        padding-left: 3%; /* 작은 화면에서 좌우 패딩 줄임 */
+        padding-right: 3%; /* 작은 화면에서 좌우 패딩 줄임 */
+    }
+
+    .main_home::before {
+        border-radius: 0;
+    }
+
+    .profile-section,
+    .link-section {
+        margin-bottom: 20px;
+        max-width: 100%;
+        color: #ffffff;
+    }
+
+    .profile-section {
+        padding: 0; /* 작은 화면에서 섹션 패딩 제거 */
+    }
+
+    .profile-section .profile-text {
+        font-size: 1em;
+        padding: 0;
+    }
+
+    .main_home .profile-img {
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .link-section .link-group {
+        flex-direction: column;
+        gap: 10px;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .link-section .link-group a {
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: none;
+        background-color: rgba(0, 123, 255, 0.8);
+    }
+}

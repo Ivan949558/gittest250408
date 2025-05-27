@@ -2,22 +2,34 @@
 
 <head>
 	<title>content title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
 	<!--	http://localhost:8080/content : html
 		static : 이미지, css, js, uploadPath
 	-->
-
-	<h1>templates/board/content.html</h1>
-		<input type="hidden" name="num" value="${board.num}">
-		제목 : <input type="text" name="subject" th:value="${board.subject}" readonly><br>
-		작성자 : <input type="text" name="name" th:value="${board.name}" readonly><br>
-		<img th:if="${board.file != null}" th:src="@{'/uploads/' + ${board.file}}" alt="Uploaded Image" width="400"><br>
-		내용 : <textarea name="content" rows="5" cols="10" readonly th:text="${board.content}"></textarea><br>
-	<a th:if="${board.file == null}" th:href="@{/board/update(num=${board.num})}">수정하기 </a>
-	<a th:if="${board.file != null}" th:href="@{/board/fupdate(num=${board.num})}">수정하기 </a>
-	<a th:href="@{/board/delete(num=${board.num})}" onclick="return confirm('정말 삭제하시겠습니까?');"> 삭제</a>
+	<header th:insert="~{inc/top}"></header>
+	<div class="all">
+		<div class="main">
+			<input type="hidden" name="num" value="${board.num}">
+			<label>제목 :</label><input type="text" name="subject" th:value="${board.subject}" readonly><br>
+			<label>작성자 :</label><input type="text" name="name" th:value="${board.name}" readonly><br>
+			<img th:if="${board.file != null}" th:src="@{'/uploads/' + ${board.file}}" alt="Uploaded Image"
+				width="400"><br>
+			<label>내용 :</label><textarea name="content" rows="5" cols="10" readonly th:text="${board.content}"></textarea><br>
+		</div>
+		<div class="btn">
+			<a th:if="${board.file == null}" th:href="@{/board/update(num=${board.num})}" class="update">수정하기 </a>
+			<a th:if="${board.file != null}" th:href="@{/board/fupdate(num=${board.num})}" class="fupdate">수정하기 </a>
+			<a th:href="@{/board/delete(num=${board.num})}" onclick="return confirm('정말 삭제하시겠습니까?');" class="detete">
+				삭제</a>
+		</div>
+	</div>
+	
+	<footer th:insert="~{inc/footer}"></footer>
 	
 </body>
 

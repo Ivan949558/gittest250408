@@ -108,7 +108,6 @@ public class MemberController {
 		String id = (String) session.getAttribute("id");
 		
 		Optional<Member> member = memberService.findById(id);
-		
 		model.addAttribute("member", member.get());
 		
 		return "/member/info";

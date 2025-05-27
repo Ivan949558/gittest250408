@@ -2,6 +2,8 @@
 
 <head>
 	<title>insert title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
@@ -9,12 +11,14 @@
 		static : 이미지, css, js, uploadPath
 	-->
 
-	<h1>templates/member/insert.html</h1>
+	<header th:insert="~{inc/top}"></header>
 	아이디 : <span th:text="${member.id}"></span><br>
 	비밀번호 : <span th:text="${member.passwd}"></span><br>
 	이름 : <span th:text="${member.name}"></span><br>
 	
 	<a href="/main"> 메인페이지로 이동 </a>
+	
+	<footer th:insert="~{inc/footer}"></footer>
 </body>
 
 </html>

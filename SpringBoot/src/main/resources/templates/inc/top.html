@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="board-links">
+	<a href="/main">홈으로</a>
+	<a href="/board/list">게시판 글목록</a>
+</div>
+
+<div class="user-area">
+	<div class="auth-links" th:if="${session.id == null}">
+		<a href="/login" id="loginLink">로그인</a> <a href="/insert"
+			id="signupLink">회원가입</a>
+	</div>
+
+	<div class="user-info-dropdown">
+		<span th:text="${session.id}"></span><a id="loginInfo" href="#"
+			class="user-greeting" th:if="${session.id != null}"> 님 로그인</a>
+			<a href="/logout" th:if="${session.id != null}">로그아웃</a><br> <a
+				href="/info" th:if="${session.id != null}">나의 정보 조회</a><br> <a
+				href="/update" th:if="${session.id != null}">나의 정보 수정</a><br>
+				<a href="/delete" th:if="${session.id != null}">나의 정보 삭제</a><br>
+				<a href="/list" th:if="${session.id == 'admin'}">회원목록</a><br>
+		</div>
+	</div>

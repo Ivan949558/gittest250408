@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/* 기본 리셋 및 폰트 설정 */
+body {
+    margin: 0;
+    font-family: '맑은 고딕', 'Malgun Gothic', Arial, sans-serif;
+    background-color: #f8f9fa; /* 전체 페이지 배경색 */
+}
+
+/* 헤더 컨테이너 스타일 */
+header {
+    background-color: #343a40; /* 다크 네이비 배경색 */
+    color: #ffffff; /* 텍스트 색상 흰색 */
+    padding: 15px 30px; /* 상하 15px, 좌우 30px 패딩 */
+    display: flex; /* Flexbox를 사용하여 내부 요소 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-between; /* 양 끝 정렬 (좌측은 게시판, 우측은 사용자 정보) */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 은은한 그림자 */
+    flex-wrap: wrap; /* 요소들이 많아지면 줄바꿈 허용 */
+}
+
+/* 공통 링크 스타일 */
+header a {
+    color: #ffffff; /* 기본 링크 색상 흰색 */
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 효과 */
+    margin-left: 10px; /* 링크 사이 간격 */
+    white-space: nowrap; /* 링크 텍스트가 줄바꿈되지 않도록 */
+}
+
+/* 게시판 링크 그룹 (좌측 배치) */
+.board-links {
+    display: flex; /* 가로로 나열 */
+    align-items: center;
+    /* justify-content: flex-start;  기본값이므로 생략 가능 */
+}
+
+.board-links a {
+    background-color: #28a745; /* 녹색 버튼 배경 */
+    font-weight: bold;
+}
+
+.board-links a:hover {
+    background-color: #218838; /* 호버 시 더 어두운 녹색 */
+}
+
+/* 사용자 영역 그룹 (우측 배치) */
+.user-area {
+    display: flex; /* 이 영역 안의 요소들을 가로로 나열 */
+    align-items: center;
+    margin-left: auto; /* 좌측 공간을 모두 차지하여 우측으로 밀어냄 */
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 허용 */
+    justify-content: flex-end; /* 이 영역 내에서 요소들을 우측 정렬 */
+}
+
+/* 로그인/회원가입 링크 그룹 */
+.auth-links {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* 사용자 정보 드롭다운과의 간격 */
+}
+
+.auth-links a {
+    background-color: #007bff; /* 파란색 버튼 배경 */
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    background-color: #0056b3; /* 호버 시 더 어두운 파란색 */
+}
+
+/* 사용자 정보 및 드롭다운 컨테이너 */
+.user-info-dropdown {
+    position: relative; /* 드롭다운 메뉴의 기준점 */
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* 텍스트가 한 줄에 표시되도록 */
+}
+
+.user-info-dropdown span {
+    font-weight: bold;
+    color: #adb5bd; /* 약간 밝은 회색 */
+    margin-right: 5px;
+}
+
+#loginInfo { /* "님 로그인" 링크 */
+    color: #adb5bd;
+    text-decoration: none;
+    cursor: pointer; /* 클릭 가능한 요소임을 나타냄 */
+    padding: 0; /* 링크 기본 패딩 제거 */
+    margin-left: 0;
+}
+
+#loginInfo:hover {
+    color: #ffffff; /* 호버 시 흰색 */
+    text-decoration: underline;
+    background-color: transparent; /* 배경색 변화 없음 */
+}
+
+/* 회원 정보 드롭다운 내용 */
+#memberInfo {
+    display: none; /* 초기에는 숨김 */
+    position: absolute;
+    top: 100%; /* 부모 요소 바로 아래에 위치 */
+    right: 0; /* 우측 정렬 */
+    background-color: #495057; /* 어두운 배경 */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    padding: 10px 0;
+    border-radius: 5px;
+    margin-top: 5px; /* 살짝 떨어지도록 */
+}
+
+#memberInfo a {
+    color: #ffffff;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block; /* 각 메뉴 항목을 블록으로 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    margin-left: 0; /* 내부 링크 마진 제거 */
+}
+
+#memberInfo a:hover {
+    background-color: #6c757d; /* 호버 시 배경색 변경 */
+    color: #fff;
+}
+
+/* 작은 화면을 위한 반응형 조정 */
+@media (max-width: 900px) { /* 태블릿, 모바일 등 작은 화면 */
+    header {
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: flex-start; /* 좌측 정렬 */
+        padding: 15px 20px;
+    }
+
+    .board-links,
+    .user-area {
+        width: 100%; /* 전체 너비 차지 */
+        margin-left: 0; /* 마진 초기화 */
+        justify-content: flex-start; /* 좌측 정렬 */
+        flex-direction: column; /* 세로 정렬 */
+    }
+
+    .auth-links {
+        margin-right: 0;
+        margin-top: 15px; /* 상단 메뉴와의 간격 */
+        flex-direction: column; /* 세로 정렬 */
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .auth-links a {
+        width: calc(100% - 20px); /* 패딩 고려한 너비 */
+        margin-left: 0;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .user-info-dropdown {
+        margin-top: 15px; /* 로그인/회원가입 링크와의 간격 */
+        width: 100%;
+        justify-content: flex-start; /* 좌측 정렬 */
+        flex-direction: column; /* 세로 정렬 */
+        align-items: flex-start;
+    }
+
+    .user-info-dropdown #memberInfo {
+        right: auto; /* 우측 정렬 해제 */
+        left: 0; /* 좌측 정렬 */
+        width: 100%; /* 전체 너비 */
+        box-sizing: border-box; /* 패딩, 보더 포함 너비 계산 */
+    }
+
+    .board-links a {
+        width: calc(100% - 20px);
+        margin-left: 0;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+}

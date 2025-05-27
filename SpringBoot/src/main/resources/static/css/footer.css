@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+/* --- Footer Styles --- */
+footer {
+    background-color: #343a40; /* 어두운 배경색 */
+    color: #f8f9fa; /* 밝은 텍스트 색상 */
+    padding: 30px 20px; /* 상하 30px, 좌우 20px 패딩 */
+    font-size: 0.9em; /* 글꼴 크기 약간 작게 */
+    line-height: 1.6; /* 줄 간격 */
+    text-align: center; /* 기본 텍스트 중앙 정렬 */
+    width: 100%; /* 너비 전체 차지 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+    /* 푸터를 페이지 하단에 고정하고 싶다면 position: sticky; bottom: 0; 등의 속성 추가 */
+    /* 또는 body에 display: flex; flex-direction: column; min-height: 100vh; 적용 후
+       main에 flex-grow: 1; 을 주어 푸터가 하단에 오도록 할 수 있습니다. */
+}
+
+.footer-content {
+    display: flex; /* Flexbox 사용하여 내부 섹션 정렬 */
+    flex-direction: column; /* 섹션들을 세로로 정렬 */
+    align-items: center; /* 가로축 중앙 정렬 */
+    max-width: 1200px; /* 푸터 내용의 최대 너비 */
+    margin: 0 auto; /* 푸터 내용을 가운데 정렬 */
+}
+
+.footer-section {
+    margin-bottom: 15px; /* 각 섹션 간의 하단 여백 */
+}
+
+.footer-section:last-child {
+    margin-bottom: 0; /* 마지막 섹션은 하단 여백 제거 */
+}
+
+.footer-section p {
+    margin: 5px 0; /* 단락 간의 상하 간격 조절 */
+}
+
+.footer-section strong {
+    color: #adb5bd; /* 강조 텍스트 색상 (약간 밝게) */
+    margin-right: 5px; /* 콜론 뒤 간격 */
+}
+
+/* 저작권 섹션 글꼴 스타일 */
+.footer-section.copyright p {
+    font-size: 0.85em; /* 저작권 문구 글꼴 더 작게 */
+    color: #ced4da; /* 저작권 문구 색상 (더 연하게) */
+}
+
+
+/* --- 반응형 디자인 (작은 화면) --- */
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 15px; /* 작은 화면에서 패딩 줄이기 */
+        font-size: 0.85em; /* 글꼴 크기 더 작게 */
+    }
+
+    .footer-content {
+        align-items: flex-start; /* 작은 화면에서는 좌측 정렬 (콘텐츠가 길어질 때) */
+        text-align: left; /* 텍스트도 좌측 정렬 */
+    }
+
+    .footer-section {
+        margin-bottom: 10px; /* 섹션 간 여백 줄이기 */
+    }
+}

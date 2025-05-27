@@ -2,6 +2,8 @@
 
 <head>
 	<title>delete title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
@@ -11,7 +13,7 @@
 	
 	<a href="/main"> 메인페이지 이동 </a> <br>
 	
-	<h1>templates/member/delete.html</h1>
+	<header th:insert="~{inc/top}"></header>
 	<form th:action="@{/deletePro}" method="post">
 		아이디 : <input type="text" name="id"><br>
 		비밀번호 : <input type="password" name="passwd"><br>
@@ -19,6 +21,8 @@
 	</form>
 	
 	<a href="/insert"> 회원가입 </a>
+	
+	<footer th:insert="~{inc/footer}"></footer>
 	
 	<script th:inline="javascript">
 		function confirmDelete() {

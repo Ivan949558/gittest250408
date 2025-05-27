@@ -1,7 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>fupdate title</title>
+<title>fupdate title</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
@@ -9,16 +12,29 @@
 		static : 이미지, css, js, uploadPath
 	-->
 
-	<h1>templates/board/fupdate.html</h1>
-	<form action="/board/fupdatePro" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="num" th:value="${board.num}">
-		제목 : <input type="text" name="subject" th:value="${board.subject}"><br>
-		작성자 : <input type="text" name="name" th:value="${board.name}" readonly><br>
-		파일 : <input type="file" name="file" th:value="${board.file}"><br>
-		<img th:src="@{'/uploads/' + ${board.file}}" alt="Uploaded Image" width="400"><br>
-		내용 : <textarea name="content" rows="5" cols="10" th:text="${board.content}"></textarea><br>
-	<input type="submit" value="수정하기">
-	</form>
+	<header th:insert="~{inc/top}"></header>
+	<div class="all">
+		<div class="main">
+			<form action="/board/fupdatePro" method="post"
+				enctype="multipart/form-data">
+				<input type="hidden" name="num" th:value="${board.num}"> <label>제목
+					:</label> <input type="text" name="subject" th:value="${board.subject}"><br>
+				<label>작성자 :</label><input type="text" name="name"
+					th:value="${board.name}" readonly><br>
+				<label>파일 :</label><input type="file" name="file"
+					th:value="${board.file}"><br> <img
+					th:src="@{'/uploads/' + ${board.file}}" alt="Uploaded Image"
+					width="400"><br>
+				<label>내용 :</label>
+				<textarea name="content" rows="5" cols="10"
+					th:text="${board.content}"></textarea>
+				<br> <input type="submit" value="수정하기">
+			</form>
+		</div>
+	</div>
+	
+	<footer th:insert="~{inc/footer}"></footer>
+	
 </body>
 
 </html>

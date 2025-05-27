@@ -1,7 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>write title</title>
+<title>write title</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
@@ -9,14 +12,24 @@
 		static : 이미지, css, js, uploadPath
 	-->
 
-	<h1>templates/member/write.html</h1>
-	<form action="/board/fwritePro" method="post" enctype="multipart/form-data">
-		이름 : <input type="text" name="name" th:value="${session.id}" readonly><br>
-		제목 : <input type="text" name="subject"><br>
-		파일 : <input type="file" name="file"><br>
-		내임 : <textarea name="content" rows="5" cols="10"></textarea><br>
-		<input type="submit" value="글쓰기">
-	</form>
+	<header th:insert="~{inc/top}"></header>
+	<div class="all">
+		<div class="main">
+			<form action="/board/fwritePro" method="post"
+				enctype="multipart/form-data">
+				<label>작성자 :</label><input type="text" name="name"
+					th:value="${session.id}" readonly><br>
+				<label>제목 :</label><input type="text" name="subject"><br>
+				<label>파일 :</label><input type="file" name="file"><br>
+				<label>내용 :</label>
+				<textarea name="content" rows="5" cols="10"></textarea>
+				<br> <input type="submit" value="글쓰기">
+			</form>
+		</div>
+	</div>
+	
+	<footer th:insert="~{inc/footer}"></footer>
+	
 </body>
 
 </html>

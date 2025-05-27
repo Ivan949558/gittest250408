@@ -2,12 +2,16 @@
 
 <head>
 	<title>list title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 </head>
 
 <body>
 	<!--	http://localhost:8080/list : html
 		static : 이미지, css, js, uploadPath
 	-->
+	
+	<header th:insert="~{inc/top}"></header>
 	<table>
 	    <tr>
 	        <th>회원 ID</th>
@@ -23,7 +27,7 @@
 	
 	<a href="/main"> 메인페이지로 이동 </a>
 	
-	
+	<footer th:insert="~{inc/footer}"></footer>
 </body>
 
 </html>

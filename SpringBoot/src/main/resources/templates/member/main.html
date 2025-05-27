@@ -1,49 +1,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>main title</title>
+<title>main title</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 
 <body>
 	<!--	http://localhost:8080/main : html
 		static : 이미지, css, js, uploadPath
 	-->
-	
-	<h1>templates/member/main.html</h1>
-	<span th:text="${session.id}"></span><a id="loginInfo"> 님 로그인</a><br>
-	
-	<div id="memberInfo">
-		<a href="/logout">로그아웃</a><br>
-		<a href="/info">나의 정보 조회</a><br>
-		<a href="/update">나의 정보 수정</a><br>
-		<a href="/delete" onclick="return confirmDelete()">나의 정보 삭제</a><br>
-		<a href="/list">회원목록</a><br>
-	</div>
-	
-	<a href="/login" id="loginLink"> [로그인] </a>
-	<a href="/insert" id="signupLink"> [회원가입] </a><br>
+	<header th:insert="~{inc/top}"></header>
+
+		<div class="main_home">
+		    <div class="profile-section">
+		        <p class="profile-text">게임과 세상 소식을 좋아하는 일반인입니다.</p>
+		        <img th:src="@{/uploads/Kuma.jpg}" alt="Profile Image" class="profile-img">
+		    </div>
 		
-	<a href="/board/write">게시판 글쓰기</a><br>
-	<a href="/board/list">게시판 글목록</a><br>
-	<a href="/board/fwrite">파일 게시판 글쓰기</a><br>
-	
-	
-	<script th:inline="javascript">
-	    var sessionId = /*[[${session.id}]]*/ "";
+		    <div class="link-section">
+		        <h3 class="link-title">유용한 링크</h3>
+		        <div class="link-group">
+		            <a href="https://www.google.com" target="_blank">구글</a>
+		            <a href="https://www.naver.com" target="_blank">네이버</a>
+		            <a href="https://kr.investing.com" target="_blank">인베스팅닷컴 코리아</a>
+		        </div>
+		    </div>
+		</div>
 
-	    // sessionId 값 확인
-	    console.log("현재 세션 값:", sessionId);
-
-	    // 로그인 상태인 경우 (sessionId가 존재하면)
-	    if (sessionId && sessionId !== "null" && sessionId !== "") {
-	        document.getElementById("loginLink").style.display = "none";  // 로그인 버튼 숨김
-	        document.getElementById("signupLink").style.display = "none"; // 회원가입 버튼 숨김
-	    } else {
-	        document.getElementById("loginInfo").style.display = "none";  // 로그인 정보 숨김
-	        document.getElementById("memberInfo").style.display = "none"; // 회원 메뉴 숨김
-	    }
-	</script>
-	
+	<footer th:insert="~{inc/footer}"></footer>
 </body>
 
 </html>
