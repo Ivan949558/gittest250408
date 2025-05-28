@@ -16,6 +16,7 @@
 	<div class="main">
 	    <form action="/insertPro" method="post">
 	        <div class="form-group"> <label> 아이디 : </label><input type="text" name="id">
+	        <span id="idCheckResult" style="margin-left: 10px;"></span>
 	        </div>
 	        <div class="form-group"> <label> 비밀번호 : </label><input type="password" name="passwd">
 	        </div>
@@ -25,6 +26,35 @@
 	    </form>
 	</div>
 	<footer th:insert="~{inc/footer}"></footer>
+	
+	<script src="/js/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    $("input[name='id']").on("input", function () {
+		        let userId = $(this).val();
+		        if (userId.length > 2) {
+		        	$.ajax({
+		        	    url: "http://localhost:8080/check/id",
+		        	    type: "GET",
+		        	    data: { id: userId },
+		        	    success: function (response) {
+		        	        if (response.includes("사용 가능")) {
+		        	            $("#idCheckResult").text(response).css("color", "green");
+		        	        } else {
+		        	            $("#idCheckResult").text(response).css("color", "red");
+		        	        }
+		        	    },
+		        	    error: function (xhr, status, error) {
+		        	        console.error("Ajax 오류 발생:", error);
+		        	        $("#idCheckResult").text("⚠️ 아이디 확인 중 오류 발생").css("color", "orange");
+		        	    }
+		        	});
+		        } else {
+		            $("#idCheckResult").text("");
+		        }
+		    });
+		});
+	</script>
 </body>
 
 </html>

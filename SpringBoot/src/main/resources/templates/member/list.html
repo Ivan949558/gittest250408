@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/top.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/member.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/list.css}">
 </head>
 
 <body>
@@ -27,8 +28,46 @@
 	    </tr>
 	</table>
 	</div>
-	
+	<div class="InfoMain">
+	<a href="#" id="member_list">전체 회원</a><br>
+	<table id="table_list">
+	    <tr>
+	        <th>회원 ID</th><th>이름</th><th th:if="${session.id == 'admin'}">비밀번호</th></tr>
+	</table>
+	</div>
 	<footer th:insert="~{inc/footer}"></footer>
+
+	<script src="/js/jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    $("#member_list").click(function (event) {
+		        event.preventDefault();
+				
+		        let sessionId = sessionStorage.getItem("id");
+	
+		        $.ajax({
+		            url: "http://localhost:8080/listJson",
+		            type: "GET",
+		            dataType: "json",
+		            success: function (data) {
+		                let tableBody = $("#table_list");
+		                tableBody.find("tr:gt(0)").remove();
+		                $.each(data, function (index, item) {
+		                    let row = "<tr>" +
+		                    "<td>" + item.id + "</td>" +
+		                    "<td>" + item.name + "</td>" +
+		                    "<td>" + item.passwd + "</td>";
+		                    row += "</tr>";
+		                    tableBody.append(row);
+		                });
+		            },
+		            error: function (xhr, status, error) {
+		                console.error("데이터를 불러오는 중 오류 발생:", error);
+		            }
+		        });
+		    });
+		});
+	</script>
 </body>
 
 </html>

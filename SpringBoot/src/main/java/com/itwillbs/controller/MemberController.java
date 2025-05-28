@@ -4,11 +4,13 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.SessionScope;
 
 import com.itwillbs.domain.MemberDTO;
@@ -177,5 +179,28 @@ public class MemberController {
 		return "member/list";
 	}
 	
+	//http://localhost:8080/list
+	@GetMapping("/listJson")
+	@ResponseBody
+	public List<Member> listJson() {
+		log.info("MemberController listJson()");
+		
+		List<Member> members = memberService.getAllMembers();
+		
+		return members;
+	}
+	
+	@GetMapping("/check/id")
+	public ResponseEntity<String> checkId(@RequestParam(name = "id") String id) { 
+	    log.info("아이디 중복 체크 요청: " + id);
+	    boolean isAvailable = memberService.isIdAvailable(id);
+
+	    return isAvailable ? ResponseEntity.ok("✅ 사용 가능한 아이디입니다.") :
+	                        ResponseEntity.ok("❌ 이미 사용 중인 아이디입니다.");
+	}
+
+
+
+
 	
 }

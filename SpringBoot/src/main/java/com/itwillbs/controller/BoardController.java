@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -219,6 +222,19 @@ public class BoardController {
 	    boardService.fsave(board); // 엔터티 저장
 
 	    return "redirect:/board/list";
+	}
+	
+	@GetMapping("/listJson")
+	@ResponseBody
+	public List<Board> listJson(@RequestParam(value = "page", defaultValue = "1", required = false)int page){
+		
+		int size = 10;
+		
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("num").descending());
+		
+		Page<Board> boardList = boardService.getPagedBoards(pageable);
+		
+		return boardList.getContent();
 	}
 	
 }

@@ -58,6 +58,14 @@ public class MemberService {
 		
 		return memberRepository.findAll();
 	}
+
+	public boolean isIdAvailable(String id) {
+		log.info("MemberService isIdAvailable()");
+		
+	    return !memberRepository.existsById(id);
+	}
+
+
 	
 	
 	

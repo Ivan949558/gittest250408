@@ -5,11 +5,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* max-width: 900px; 제거하여 100% 너비로 확장 */
+    justify-content: center; /* Added to vertically center content */
     width: 100%; /* 웹페이지 가로 100% 차지 */
     padding: 40px 0; /* 상하 패딩은 유지, 좌우 패딩은 제거 (내부 요소에서 처리) */
     background-color: #ffffff;
-    /* background-image, background-size 등 배경 이미지 관련 속성은 그대로 유지 */
     background-image: url('/uploads/Kumamon_b.jpg');
     background-size: cover;
     background-position: center center;
@@ -20,12 +19,9 @@
     z-index: 1;
 
     /* main_home 자체의 좌우 여백을 위한 패딩 추가 */
-    /* 내부 콘텐츠가 양 끝에 너무 붙지 않도록 더 큰 좌우 패딩을 줍니다. */
-    /* 이 패딩은 배경 이미지 위, 콘텐츠 아래에 적용됩니다. */
     padding-left: 5%; /* 예시: 좌우 5% 패딩 */
     padding-right: 5%; /* 예시: 좌우 5% 패딩 */
 
-    /* border-radius와 box-shadow는 100% 너비에서 적용 시 어색할 수 있어 제거하거나 조절 */
     border-radius: 0; /* 웹페이지 전체를 덮을 때 모서리 둥글기 제거 */
     box-shadow: none; /* 웹페이지 전체를 덮을 때 그림자 제거 */
 }
@@ -44,7 +40,6 @@
 }
 
 /* 개별 섹션 스타일 */
-/* 이 섹션들의 max-width는 그대로 유지하여 콘텐츠는 여전히 중앙에 모이도록 합니다. */
 .profile-section,
 .link-section {
     width: 100%; /* 부모 .main_home의 너비를 따름 */
@@ -53,7 +48,6 @@
     text-align: center;
     color: #ffffff;
     z-index: 2;
-    /* profile-section에 주었던 추가 패딩은 이제 .main_home에서 처리하므로 제거 */
     padding: 0;
     box-sizing: border-box;
 }
@@ -88,7 +82,6 @@
     margin-bottom: 15px;
     line-height: 1.5;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    /* profile-text에 주었던 추가 패딩은 이제 .main_home에서 처리하므로 제거 */
     padding: 0;
     box-sizing: border-box;
 }
